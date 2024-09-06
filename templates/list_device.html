@@ -1,0 +1,72 @@
+{% extends "user.html" %}
+{% block title %}
+Thông tin thiết bị
+{% endblock %}
+{% block content %}
+<style>
+     table {
+        width: 100%;
+        border-collapse: collapse;
+        max-width: 1000px;
+        margin: auto;
+    }
+    th, td {
+        padding: 8px;
+        text-align: center;
+        border: 1px solid black;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+
+    td {
+        font-size: 20px;
+    }
+    
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+    
+
+    #header {
+        text-align: center;
+        font-family:Arial, Helvetica, sans-serif;
+        padding: 20px 0px;
+    }
+
+</style>
+        <h1 id="header">Danh sách thiết bị</h1>
+
+        <table style="border: none;">
+            <thead>
+                <td><strong>Số chế tạo</strong></td>
+                <td><strong>Tên thiết bị</strong></td>
+                <td><strong>Mã hiệu</strong></td>
+                <td><strong>Nhà sản xuất</strong></td>
+                <td><strong>Năm sản xuất</strong></td>
+
+                <td style="border: none;"><strong>
+                    <form action="{{url_for('dev_enaddrec')}}" method="POST">
+                        <input type="submit" value="THÊM" style="background-color: rgb(47, 223, 71); color: aliceblue; padding: 5px; border: none; border-radius: 10px;">
+                    </form>
+                </strong></td>
+
+            </thead>
+
+            {% for row in rows %}
+            <tr>
+                <td>{{ row["so_che_tao"] }}</td>
+                <td>{{ row["ten_thiet_bi"] }}</td>
+                <td> {{ row["ma_hieu"]}}</td>
+                <td>{{ row["nha_san_xuat"] }}</td>
+                <td>{{ row["nam_san_xuat"] }}</td>
+                <td style="border: none;"><form action="{{url_for('edit_dev')}}" method="POST"><input type="hidden" name="id" value="{{ row['so_che_tao'] }}"><input type="submit" value="SỬA" style="background-color:#FFD700; color: aliceblue; padding: 5px; border: none; border-radius: 10px;"></form> </td>
+                <td style="border: none;"><form onsubmit="return confirm('Are you sure you want to DELETE this Student from the Database?');" action="{{url_for('delete_dev')}}" method="POST"><input type="hidden" name="id" value="{{ row['so_che_tao'] }}"><input type="submit" value="XÓA" style="background-color: red; color: aliceblue; padding: 5px; border: none; border-radius: 10px;"></form> </td>
+
+               
+            </tr>
+            {% endfor %}
+        </table>
+        
+   \
+{% endblock %}

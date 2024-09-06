@@ -1,0 +1,82 @@
+{% extends "user.html" %}
+{% block title %}
+Hồ sơ kiểm định
+{% endblock %}
+{% block content %}
+
+<style>
+    .input {
+        border-radius: 30px;
+        padding: 10px 20px;
+        border: 2px solid gray;
+        transition: border-color 0.3s;
+
+    }
+    .input:focus {
+        border: 2px solid rgb(50, 50, 250);
+        outline: none;
+    }
+    .head{
+        justify-content: center;
+        text-align: center;
+    }
+    .main{
+        display:flex;
+        justify-content: center;
+        background-image: url('../static/images.jpg');
+        margin: 20px 250px;
+        padding:30px 0px;
+        border-radius: 30px;
+        box-shadow: 2px 2px 10px 10px gray;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .main-one {
+        margin-right: 20px;
+    }
+
+</style>
+<div >
+        {% for row in rows %}
+        <div class="head">
+            <h3>Sửa thông tin hồ sơ</h3>
+            <h4 style="color:blue">Mã HS: {{ row['ma_hs'] }}</h4>
+        </div>
+        <div class="main">            
+            <div class="main-one">
+                <form action="{{ url_for('editrec_pro') }}" method="POST" >
+                    <input type="hidden" name="ma_hs" value="{{ row['ma_hs']}}" required class="input">
+                    Tên thiết bị<br>
+                    <input type="text" name="ten_thiet_bi" value="{{ row['ten_thiet_bi'] }}" required class="input"/><br>
+        
+                    Số giấy chứng nhận<br>
+                    <input type="number" name="so_giay_chung_nhan" value="{{ row['so_giay_chung_nhan'] }}" required class="input"/><br>
+        
+                    Kết quả<br>
+                    <input type="text" name="ket_qua" value="{{ row['ket_qua'] }}" required class="input"/><br>
+        
+                    Ngày kiểm định<br>
+                    <input type="date" name="ngay_kiem_dinh" value="{{ row['ngay_kiem_dinh'] }}" required class="input"/><br>
+            </div>
+
+            <div class="main-two">
+                Mã KĐV<br>
+                <input type="number" name="ma_kdv" value="{{ row['ma_kdv'] }}" required class="input"/><br>
+                
+                Số chế tạo<br>
+                <input type="number" name="so_che_tao" value="{{ row['so_che_tao'] }}" required class="input"/><br>
+
+                
+                Mã KH<br>
+                <input type="number" name="ma_kh" value="{{ row['ma_kh'] }}" required class="input"/><br>
+        
+
+                <input type="submit" value="Cập nhật" style="margin-top: 36px;border-radius:15px ; padding: 10px ; margin-left: 185px;" /><br>
+        </form>
+
+            </div>
+        </div>
+       
+</div>
+        {% endfor %}
+{% endblock %}

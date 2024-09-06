@@ -1,0 +1,64 @@
+{% extends "user.html" %}
+{% block title %}
+Khách hàng
+{% endblock %}
+{% block content %}
+<style>
+    .form{
+        padding: 5px 15px;
+        border: 1px solid gray;
+        border-radius:15px;
+    }
+    .input {
+        border-radius: 30px;
+        padding: 10px 20px;
+        border: 2px solid gray;
+        transition: border-color 0.3s;
+
+    }
+    .input:focus {
+        border: 2px solid rgb(50, 50, 250);
+        outline: none;
+    }
+    ul {
+        display: flex;
+        list-style:none;
+    }
+    .main {
+        margin: 10px 500px;        
+        border-radius: 30px;
+        border: 1px solid;
+        box-shadow: 2px 2px 10px 10px lightblue;
+        padding: 10px 20px;
+    }
+    
+</style>
+<h2 style="text-align: center;">Thêm thông tin khách hàng tại đây</h2>
+
+<div class="main" >
+
+    <form action="{{ url_for('addrec')}}" method="POST">
+            Mã KH<br>
+            <input type="number" name= 'ma_kh' required class="input"/><br>
+
+            Họ và tên<br>
+            <input  type="text"   name="ho_ten" required class="input"/><br>
+
+            Số điện thoại<br>
+            <input type="number" name="sdt" required class="input" /><br>
+
+            Địa chỉ<br>
+            <input type="text" name="dia_chi"  required class="input"/><br>
+        <ul>
+            <li>
+                <input type="submit" value="Thêm" required style="margin: 15px 0px;" class="form">
+            </li>
+    </form>
+    <li>
+        <form action="{{url_for('list_customer')}}" >
+            <input type="submit" value="Hủy" class="form " style="margin:15px 0px 0px 60px">
+        </form>
+    </li>
+        </ul>
+</div>
+{% endblock %}

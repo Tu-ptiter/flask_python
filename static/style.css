@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1E90FF;
+    padding: 10px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 32px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    align-items: center; 
+}
+
+.navbar li {
+    position: relative;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 40px;
+    padding: 10px 0; 
+    display: inline-block; 
+    position: relative; 
+}
+
+.navbar .dropdown {
+    position: absolute;
+    top: calc(100% + 10px); 
+    left: 0;
+    background-color: #1E90FF;
+    padding: 10px 0;
+    list-style: none;
+    display: none; 
+    transition: opacity 0.3s ease; 
+}
+
+.navbar li:hover > .dropdown {
+    display: block;
+}
+
+.navbar .dropdown li {
+    width: 200px;
+}
+
+.navbar .dropdown a {
+    display: block;
+    padding: 10px;
+    color: white;
+    background-color: rgba(30, 144, 255, 0.5);
+    white-space: nowrap;
+    text-align: center;
+    margin-left: 5px;
+    font-weight: 700;
+}
+
+
+.main-content {
+    padding-top: 70px; 
+}
+
+.navbar a::before {
+    content: "";
+    position: absolute;
+    bottom: 0; 
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #fff;
+    transition: width 0.4s;
+}
+
+.navbar a:hover::before {
+    width: 100%;
+}
+
+
+
+@keyframes colorChange {
+    0%, 100% {
+        color: red;
+    }
+    50% {
+        color: blue;
+    }
+}
+
+.color-change {
+    animation: colorChange 0.5s infinite;
+    font-size: 40px;
+     font-weight: 700;
+}
+/* '.main-content{
+    background-image: url('../static/images.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 50px;
+    height: 900px;
+} */
+
+
+

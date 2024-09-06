@@ -1,0 +1,71 @@
+{% extends "user.html" %}
+{% block title %}
+Thông tin thiết bị
+{% endblock %}
+{% block content %}
+<style>
+    .input {
+        border-radius: 30px;
+        padding: 10px 20px;
+        border: 2px solid gray;
+        transition: border-color 0.3s;
+
+    }
+    .input:focus {
+        border: 2px solid rgb(50, 50, 250);
+        outline: none;
+    }
+    .head{
+        text-align: center;
+    }
+    .main{
+        display: flex;
+        justify-content: center;
+        border:1px none;
+        border-radius: 20px;
+        box-shadow: 2px 2px 10px 10px lightblue;
+        margin: 15px 250px;
+        padding: 20px 0px;
+    }
+    .main-one{
+        margin-right: 30px;
+    }
+
+    
+</style>
+<div >
+        {% for row in rows %}
+        <div class="head">
+            <h2>Cập nhật thông tin thiết bị</h2>
+            <h3 style="color:blue">Số chế tạo: {{ row['so_che_tao'] }}</h3> 
+        </div>
+        <div class="main">
+            <div class="main-one">
+                <form action="{{ url_for('editrec_dev') }}" method="POST" style="font-size: 20px;">
+                    <input type="hidden" name="so_che_tao" class="input" value="{{ row['so_che_tao']}}">
+                    Tên thiết bị<br>
+                    <input type="text" name="ten_thiet_bi" class="input" value="{{ row['ten_thiet_bi'] }}"/><br>
+        
+                    Mã hiệu<br>
+                    <input type="number" name="ma_hieu" class="input" value="{{ row['ma_hieu'] }}"/><br>
+        
+                    
+            </div>
+            <div class="main-two">
+                Nhà sản xuất<br>
+                    <input type="text" name="nha_san_xuat" class="input" value="{{ row['nha_san_xuat'] }}"/><br>
+
+                Năm sản xuất<br>
+                <input type="number" name="nam_san_xuat" class="input" value="{{ row['nam_san_xuat'] }}"/><br>
+    
+                <input type="submit" class="input" value="Cập nhật"  style="margin-top: 10px; padding: 10px 20px; border-radius: 20px; margin-left: 180px;"/><br>
+            </form>
+            </div>    
+
+        </div>
+
+           
+
+</div>
+    {% endfor %}
+{% endblock %}

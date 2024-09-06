@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}
+Trang chủ
+{% endblock %}
+{% block content %}
+<style>
+        
+@keyframes colorChange {
+    0%, 100% {
+        color: red;
+    }
+    50% {
+        color: blue;
+    }
+}
+
+.color-change {
+    animation: colorChange 0.5s infinite;
+    font-size: 40px;
+     font-weight: 700;
+}
+
+</style>
+
+<marquee behavior="scroll" direction="right" scrollamount="12" style="font-size: 40px; font-weight: 700;" class="color-change">WELCOME TO MY WEBSITE</marquee>
+
+
+
+{% endblock %} 

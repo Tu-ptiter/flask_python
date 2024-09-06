@@ -1,0 +1,66 @@
+{% extends "user.html" %}
+{% block title %}
+Thông tin khách hàng
+{% endblock %}
+{% block content %}
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        max-width: 1000px;
+        margin: auto;
+        border: none;
+    }
+    th, td {
+        padding: 8px;
+        text-align: center;
+        border: 1px solid black;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+
+    td {
+        font-size: 20px;
+    }
+    
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+
+    #header {
+        text-align: center;
+        font-family:Arial, Helvetica, sans-serif;
+        margin:20px 0px 20px 0px;
+    }
+    
+
+</style>
+        <h1 id="header" >Danh sách khách hàng</h1>
+        <table >
+            <thead >
+                <td><strong>Mã KH</strong></td>
+                <td><strong>Họ và tên</strong></td>
+                <td><strong>Số điện thoại</strong></td>
+                <td><strong>Địa chỉ</strong></td>
+                <td style="border: none;"><strong>
+                    <form action="{{url_for('enaddrec')}}" method="POST">
+                        <input type="submit" value="THÊM" style="background-color: rgb(47, 223, 71); color: aliceblue; padding: 5px 5px; border: none; border-radius: 10px;">
+                    </form>
+                </strong></td>
+            </thead>
+
+            {% for row in rows %}
+            <tr>
+                <td>{{ row["ma_kh"] }}</td>
+                <td>{{ row["ho_ten"] }}</td>
+                <td> {{ row["so_dien_thoai"]}}</td>
+                <td>{{ row["dia_chi"] }}</td>
+                <td style="border: none;"><form action="{{url_for('edit')}}" method="POST"><input type="hidden" name="id" value="{{ row['ma_kh'] }}"><input type="submit" value="SỬA" style="background-color:#FFD700; color: aliceblue; padding: 5px; border: none; border-radius: 10px; padding: 5px 15px;"></form> </td>
+                <td style="border: none;"><form onsubmit="return confirm('Bạn có chắc muốn xóa KHÁCH HÀNG này không ?');" action="{{url_for('delete')}}" method="POST"><input type="hidden" name="id" value="{{ row['ma_kh'] }}"><input type="submit" value="XÓA" style="background-color: red; color: aliceblue; padding: 5px 15px; border: none; border-radius: 10px;  " ></form> </td>
+               
+            </tr>
+            {% endfor %}
+        </table>
+{% endblock %}

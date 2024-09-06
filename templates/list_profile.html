@@ -1,0 +1,75 @@
+{% extends "user.html" %}
+{% block title %}
+Hồ sơ kiểm định
+{% endblock %}
+{% block content %}
+<style>
+     table {
+        width: 100%;
+        border-collapse: collapse;
+        max-width: 1000px;
+        margin: auto;
+    }
+    th, td {
+        padding: 8px;
+        text-align: center;
+        border: 1px solid black;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+
+    td {
+        font-size: 20px;
+    }
+
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    #header {
+        text-align: center;
+        font-family:Arial, Helvetica, sans-serif;
+        padding: 20px 0px;
+    }
+
+
+</style>
+
+        <h1 id="header">Danh sách hồ sơ kiểm định</h1>
+
+        <table style="border: none; ">
+            <thead>
+                <th><strong>Mã HS</strong></th>
+                <th><strong>Tên thiết bị</strong></th>
+                <th><strong>Số giấy chứng nhận</strong></th>
+                <th><strong>Kết quả</strong></th>
+                <th><strong>Ngày kiểm định</strong></th>
+                <th><strong>Mã KĐV</strong></th>
+                <th><strong>Số chế tạo</strong></th>
+                <th><strong>Mã KH</strong></th>
+                <th style="border: none;"> <strong>
+                    <form action="{{url_for('pro_enaddrec')}}" method="POST">
+                        <input type="submit" value="THÊM" style="background-color: rgb(47, 223, 71); color: aliceblue; padding: 5px; border: none; border-radius: 10px;">
+                    </form>
+                </strong></th>
+
+            </thead>
+
+            {% for row in rows %}
+            <tr>
+                <td>{{ row["ma_hs"] }}</td>
+                <td>{{ row["ten_thiet_bi"] }}</td>
+                <td> {{ row["so_giay_chung_nhan"]}}</td>
+                <td>{{ row["ket_qua"]}}</td>
+                <td>{{ row["ngay_kiem_dinh"]}}</td>
+                <td>{{ row["ma_kdv"]}}</td>
+                <td>{{ row["so_che_tao"]}}</td>
+                <td>{{ row["ma_kh"]}}</td>
+                <td style="border: none;"><form action="{{url_for('edit_pro')}}" method="POST"><input type="hidden" name="id" value="{{ row['ma_hs'] }}"><input type="submit" value="SỬA" style="background-color:#FFD700; color: aliceblue; padding: 5px; border: none; border-radius: 10px;"></form> </td>
+                <td style="border: none;"><form onsubmit="return confirm('Bạn có chắc muốn xóa hồ sơ kiểm định này không ?');" action="{{url_for('delete_pro')}}" method="POST"><input type="hidden" name="id" value="{{ row['ma_hs'] }}"><input type="submit" value="XÓA" style="background-color: red; color: aliceblue; padding: 5px; border: none; border-radius: 10px;"></form></td>
+            </tr>
+            {% endfor %}
+        </table>
+{% endblock %}

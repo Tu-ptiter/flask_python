@@ -1,0 +1,68 @@
+{% extends "user.html" %}
+{% block title %}
+Kiểm định viên
+{% endblock %}
+{% block content %}
+<style>
+    .input {
+        border-radius: 30px;
+        padding: 10px 20px;
+        border: 2px solid gray;
+        transition: border-color 0.3s;
+
+    }
+    .input:focus {
+        border: 2px solid rgb(50, 50, 250);
+        outline: none;
+    }
+    .head{
+        text-align: center;
+    }
+    .main{
+        display: flex;
+        justify-content: center;
+        border:1px none;
+        border-radius: 20px;
+        box-shadow: 2px 2px 10px 10px lightblue;
+        margin: 10px 250px;
+        padding: 30px 0px;
+    }
+    .main-one{
+        margin-right: 30px;
+    }
+
+    
+</style>
+
+        {% for row in rows %}
+        <div class="head">
+            <h2>Cập nhật thông tin kiểm định viên</h2>
+            <h3 style="color:blue">Student ID: {{ row['ma_kdv'] }}</h3>
+        </div>
+        
+<div class="main">
+    <div class="main-one">
+        <form action="{{ url_for('editrec_ins') }}" method="POST" style="font-size: 20px;">
+            <input type="hidden" name="ma_kdv" class="input" value="{{ row['ma_kdv']}}">
+            Họ và tên<br>
+            <input type="text" name="ho_ten" class="input" value="{{ row['ho_ten'] }}"/><br>
+
+            Số điện thoại<br>
+            <input type="number" name="so_dien_thoai" class="input" value="{{ row['so_dien_thoai'] }}"/><br>
+
+            Danh mục thiết bị<br>
+            <input type="text" name="danh_muc_thiet_bi" class="input" value="{{ row['danh_muc_thiet_bi'] }}"/><br>
+    </div>
+    <div class="main-two">
+        Ngày cấp chứng chỉ<br>
+            <input type="date" name="ngay_cap_chung_chi" class="input" value="{{ row['ngay_cap_chung_chi'] }}"/><br>
+
+            Ngày hết hạn chứng chỉ<br>
+            <input type="date" name="ngay_het_han_chung_chi" class="input" value="{{ row['ngay_het_han_chung_chi'] }}"/><br>
+
+            <input type="submit" value="Cập nhật"  style="margin-top: 16px; padding: 10px 20px; border-radius: 20px;"/><br>
+        </form>
+    </div>
+</div>
+    {% endfor %}
+{% endblock %}
